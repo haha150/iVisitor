@@ -3,22 +3,9 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-function del(id) {
-  console.log(id);
-  fetch('http://localhost:5000/api/delete/' + id, {
-    method: 'POST'
-  })
-    .then((res) => res.status)
-    .then((data) => {
-      console.log(data);
-      if (data === 200) {
-        window.location.reload(false);
-      }
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
+
+
+
 
 class Visitors extends React.Component {
   constructor(props) {
@@ -26,6 +13,8 @@ class Visitors extends React.Component {
     this.state = {
       visitors: []
     };
+    this.del = this.del.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentDidMount() {
@@ -39,8 +28,30 @@ class Visitors extends React.Component {
       });
   };
 
+  del(id) {
+    fetch('http://localhost:5000/api/delete/' + id, {
+      method: 'POST'
+    })
+      .then((res) => res.status)
+      .then((data) => {
+        console.log(data);
+        if (data === 200) {
+          window.location.reload(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  update(id) {
+    window.location.href = '/admin/visitor/edit/' + id;
+  };
+
   render() {
     const { visitors } = this.state;
+    const del = this.del;
+    const update = this.update;
     var vs = visitors.map(function (v) {
       return (
         <tr key={v.id}>
@@ -50,7 +61,7 @@ class Visitors extends React.Component {
           <td>{v.company}</td>
           <td>{v.date}</td>
           <td>
-            <Button variant="warning">Editera</Button>
+            <Button variant="warning" onClick={() => update(v.id)}>Editera</Button>
             {' '}
             <Button variant="danger" onClick={() => del(v.id)}>Ta bort</Button>
           </td>

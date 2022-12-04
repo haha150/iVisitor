@@ -22,12 +22,12 @@ class CustomLDAP:
         with self.get_connection(user, password):
             pass
 
-    def search_user(self, signum):
+    def search_user(self, usr):
         with self.get_connection(self.username, self.password) as conn:
             conn.search(self.base,
                         '(&(objectClass=user)\
-                        (|(displayName=' + signum + '*)\
-                                (cn=' + signum + '*)))',
+                        (|(displayName=' + usr + '*)\
+                                (cn=' + usr + '*)))',
                         attributes=ALL_ATTRIBUTES, time_limit=50)
 
             if conn.entries:

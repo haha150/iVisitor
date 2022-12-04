@@ -13,7 +13,8 @@ export default function Login({ setToken }) {
       e.preventDefault();
       const token = {
         username,
-        password
+        password,
+        token: '123' //remove
       };
       setToken(token);
     }
@@ -24,11 +25,11 @@ export default function Login({ setToken }) {
         <img src={logo} className="App-logo" alt="logo" />
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formUsername">
-            <Form.Label>Username: </Form.Label>
+            <Form.Label>Användarnamn </Form.Label>
             <Form.Control type="text" placeholder="Username" onChange={e => {setUsername(e.target.value)}}/>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formPassword" >
-            <Form.Label>Password: </Form.Label>
+            <Form.Label>Lösenord </Form.Label>
             <Form.Control type="text" placeholder="Password" onChange={e => {setPassword(e.target.value)}}/>
           </Form.Group>
           <Button variant="primary" type="submit">
