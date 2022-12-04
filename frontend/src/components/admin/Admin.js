@@ -3,14 +3,8 @@ import React from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Visitors from './Visitors';
-import Login from '../../components/login/Login';
-import useToken from '../../components/app/useToken';
 
 export default function Admin() {
-  const { token, setToken } = useToken();
-  if (!token) {
-    return <Login setToken={setToken} />
-  }
   return (
     <div className="App">
       <header className="App-header2">

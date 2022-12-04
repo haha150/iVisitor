@@ -3,10 +3,6 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-
-
-
-
 class Visitors extends React.Component {
   constructor(props) {
     super(props);
